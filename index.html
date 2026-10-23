@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMORENA | Joyería & Accesorios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: {
+                            50: '#fdf2f4',
+                            100: '#fbe7ea',
+                            600: '#800020',
+                            700: '#6b001a',
+                            800: '#560015',
+                            900: '#3d000f',
+                        },
+                        gold: {
+                            100: '#fef9e7',
+                            300: '#f3e5ab',
+                            400: '#e5c158',
+                            500: '#d4af37',
+                            600: '#b89728',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #b89728 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-image: linear-gradient(to right, #d4af37, #f3e5ab, #b89728) 1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdf2f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-gold-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-burgundy-900/95 backdrop-blur-md border-b border-gold-500/30 text-stone-100 shadow-xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-burgundy-800 shadow-inner group-hover:scale-105 transition-transform">
+                        <span class="font-serif font-bold text-xl gold-gradient-text">A</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold tracking-widest gold-gradient-text block">AMORENA</span>
+                        <span class="text-[10px] uppercase tracking-widest text-stone-300 block -mt-1 font-semibold">Joyería & Accesorios</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                    <a href="#inicio" class="text-stone-200 hover:text-gold-400 transition-colors">Inicio</a>
+                    <a href="#catalogo" class="text-stone-200 hover:text-gold-400 transition-colors">Catálogo</a>
+                    <a href="#materiales" class="text-stone-200 hover:text-gold-400 transition-colors">Acero & Rodio</a>
+                    <a href="#nosotros" class="text-stone-200 hover:text-gold-400 transition-colors">Nuestra Esencia</a>
+                    <a href="#contacto" class="text-stone-200 hover:text-gold-400 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Actions: Cart & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleCart()" aria-label="Abrir carrito de compras" class="relative p-2 rounded-full hover:bg-burgundy-800 transition-colors text-gold-400 group">
+                        <i class="fa-solid fa-bag-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span id="cart-counter" class="absolute -top-1 -right-1 bg-gold-500 text-burgundy-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-md">0</span>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-stone-200 hover:text-gold-400">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-burgundy-900 border-t border-burgundy-800 px-6 py-4 space-y-3">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block text-stone-200 hover:text-gold-400 py-1 font-medium">Inicio</a>
+            <a href="#catalogo" onclick="toggleMobileMenu()" class="block text-stone-200 hover:text-gold-400 py-1 font-medium">Catálogo</a>
+            <a href="#materiales" onclick="toggleMobileMenu()" class="block text-stone-200 hover:text-gold-400 py-1 font-medium">Acero & Rodio</a>
+            <a href="#nosotros" onclick="toggleMobileMenu()" class="block text-stone-200 hover:text-gold-400 py-1 font-medium">Nuestra Esencia</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="block text-stone-200 hover:text-gold-400 py-1 font-medium">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section id="inicio" class="relative bg-burgundy-900 text-stone-100 overflow-hidden py-24 lg:py-32">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="absolute right-0 bottom-0 w-96 h-96 bg-gradient-to-tl from-gold-500/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-burgundy-800/80 border border-gold-500/40 text-gold-400 text-xs uppercase tracking-widest font-semibold shadow-inner">
+                        Colección Exclusiva 2026
+                    </span>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        Elegancia que <span class="gold-gradient-text italic">destaca</span> tu verdadera esencia
+                    </h1>
+                    <p class="text-stone-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Descubre nuestra selección de alta joyería en <strong class="text-gold-400 font-semibold">acero inoxidable</strong> y <strong class="text-gold-400 font-semibold">baño de rodio</strong>. Diseños diseñados para perdurar, deslumbrar y contar tu historia.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-burgundy-950 font-bold tracking-wide shadow-lg hover:shadow-gold-500/20 hover:scale-105 transition-all text-center">
+                            Ver Catálogo
+                        </a>
+                        <a href="#materiales" class="w-full sm:w-auto px-8 py-4 rounded-full border-2 border-gold-500/60 text-stone-100 hover:bg-gold-500/10 font-semibold transition-all text-center">
+                            Conocer Materiales
+                        </a>
+                    </div>
+                </div>
+                <!-- Hero image showcase -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden border-4 border-gold-500/40 shadow-2xl bg-burgundy-950">
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800" alt="Joyería de Lujo Amorena" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-burgundy-900/80 via-transparent to-transparent flex items-end p-6">
+                            <div class="text-stone-100">
+                                <span class="text-xs uppercase tracking-widest text-gold-400 font-semibold block mb-1">Detalle Artesanal</span>
+                                <p class="font-serif text-xl italic">Brillo inalterable para cada momento especial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section class="py-12 bg-burgundy-50 border-y border-burgundy-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-sm border border-stone-100">
+                    <div class="w-14 h-14 rounded-xl bg-burgundy-100 text-gold-600 flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-burgundy-900 text-lg">Acero Quirúrgico & Rodio</h3>
+                        <p class="text-sm text-stone-600">Materiales hipoalergénicos que no se oscurecen ni pierden su brillo.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-sm border border-stone-100">
+                    <div class="w-14 h-14 rounded-xl bg-burgundy-100 text-gold-600 flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-burgundy-900 text-lg">Envíos Seguros</h3>
+                        <p class="text-sm text-stone-600">Llegamos a todo el país con empaques listos para regalar.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-6 bg-white rounded-2xl shadow-sm border border-stone-100">
+                    <div class="w-14 h-14 rounded-xl bg-burgundy-100 text-gold-600 flex items-center justify-center text-2xl shrink-0">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-burgundy-900 text-lg">Diseños Exclusivos</h3>
+                        <p class="text-sm text-stone-600">Colecciones limitadas con detalles románticos y sofisticados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Product Catalog -->
+    <section id="catalogo" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-burgundy-600 font-semibold uppercase tracking-widest text-xs">Catálogo de Joyas</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-burgundy-900 mt-2 mb-4">Piezas que Enamoran</h2>
+            <p class="text-stone-600 text-sm sm:text-base">Explora nuestra colección seleccionada de collares, pulseras y aretes en acero y rodio.</p>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mt-8">
+                <button onclick="filterProducts('all')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-burgundy-900 text-stone-100 shadow-md" data-category="all">Todos</button>
+                <button onclick="filterProducts('collares')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-burgundy-900 border border-stone-200 hover:border-gold-500" data-category="collares">Collares</button>
+                <button onclick="filterProducts('pulseras')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-burgundy-900 border border-stone-200 hover:border-gold-500" data-category="pulseras">Pulseras</button>
+                <button onclick="filterProducts('aretes')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-burgundy-900 border border-stone-200 hover:border-gold-500" data-category="aretes">Aretes</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product items will be rendered by JS -->
+        </div>
+    </section>
+
+    <!-- Materials Section (Acero y Rodio) -->
+    <section id="materiales" class="py-20 bg-burgundy-900 text-stone-100 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:20px_20px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-gold-400 font-semibold uppercase tracking-widest text-xs">Calidad Garantizada</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 mb-4">El Poder del Acero y el Rodio</h2>
+                <p class="text-stone-300 text-sm sm:text-base">Seleccionamos metales nobles y resistentes para asegurar que tus accesorios mantengan su brillo intacto día tras día.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Card Acero -->
+                <div class="bg-burgundy-950/80 rounded-3xl p-8 border border-gold-500/30 shadow-xl backdrop-blur-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-shield"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-gold-400 mb-3">Acero Inoxidable Quirúrgico</h3>
+                        <p class="text-stone-300 text-sm leading-relaxed mb-6">
+                            Ideal para el uso diario. Nuestro acero quirúrgico no se oxida, no mancha la piel y es totalmente resistente al agua, perfumes y sudor. Mantén tu estilo sin preocupaciones.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs uppercase tracking-wider text-stone-400 font-medium border-t border-burgundy-800 pt-4">
+                        <li><i class="fa-solid fa-check text-gold-400 mr-2"></i> Alta durabilidad garantizada</li>
+                        <li><i class="fa-solid fa-check text-gold-400 mr-2"></i> Resistente al agua y lociones</li>
+                        <li><i class="fa-solid fa-check text-gold-400 mr-2"></i> Antialérgico</li>
+                    </ul>
+                </div>
+
+                <!-- Card Rodio -->
+                <div class="bg-burgundy-950/80 rounded-3xl p-8 border border-gold-500/30 shadow-xl backdrop-blur-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-gold-400 mb-3">Baño de Rodio Exclusivo</h3>
+                        <p class="text-stone-300 text-sm leading-relaxed mb-6">
+                            El rodio es un metal precioso de la familia del platino que aporta un brillo espejo deslumbrante y protege la joya contra el desgaste, aportando un acabado de alta gama incomparable.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs uppercase tracking-wider text-stone-400 font-medium border-t border-burgundy-800 pt-4">
+                        <li><i class="fa-solid fa-check text-gold-400 mr-2"></i> Brillo espejo superior</li>
+                        <li><i class="fa-solid fa-check text-gold-400 mr-2"></i> Protección anti-desgaste</li>
+                        <li><i class="fa-solid fa-check text-gold-400 mr-2"></i> Estética de alta joyería</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Essence / Nosotros -->
+    <section id="nosotros" class="py-20 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 space-y-6">
+                    <span class="text-burgundy-600 font-semibold uppercase tracking-widest text-xs">Nuestra Esencia</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-burgundy-900">Detalles que inspiran confianza y sofisticación</h2>
+                    <p class="text-stone-600 text-base leading-relaxed">
+                        En <strong class="text-burgundy-900 font-semibold">AMORENA</strong> creemos que cada accesorio es una extensión de tu personalidad. Cuidamos cada eslabón, cada dije de trébol o mariposa y cada acabado minimalista para ofrecerte piezas que te acompañen en tus momentos más memorables.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-4">
+                        <div class="border-l-2 border-gold-500 pl-4">
+                            <span class="font-serif text-3xl font-bold text-burgundy-900 block">+1,500</span>
+                            <span class="text-xs text-stone-600 uppercase tracking-wider">Clientas Felices</span>
+                        </div>
+                        <div class="border-l-2 border-gold-500 pl-4">
+                            <span class="font-serif text-3xl font-bold text-burgundy-900 block">100%</span>
+                            <span class="text-xs text-stone-600 uppercase tracking-wider">Garantía de Calidad</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border-2 border-gold-500/40">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800" alt="Detalle de Joyería Amorena" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Inquiries Form -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-burgundy-900 rounded-3xl p-8 sm:p-12 text-stone-100 shadow-2xl relative overflow-hidden border border-gold-500/30">
+                <div class="absolute right-0 top-0 w-64 h-64 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                
+                <div class="text-center max-w-xl mx-auto mb-10 relative z-10">
+                    <span class="text-gold-400 font-semibold uppercase tracking-widest text-xs">Atención Personalizada</span>
+                    <h2 class="font-serif text-3xl font-bold mt-2 mb-2">¿Buscas una asesoría o tienes dudas?</h2>
+                    <p class="text-stone-300 text-sm">Déjanos tus datos y nos pondremos en contacto contigo de inmediato.</p>
+                </div>
+
+                <form onsubmit="handleContactSubmit(event)" class="space-y-4 relative z-10 max-w-lg mx-auto">
+                    <div>
+                        <input type="text" id="contact-name" required placeholder="Tu Nombre Completo" class="w-full px-5 py-3.5 rounded-xl bg-burgundy-950 border border-burgundy-800 text-stone-100 placeholder-stone-400 focus:outline-none focus:border-gold-500 text-sm">
+                    </div>
+                    <div>
+                        <input type="email" id="contact-email" required placeholder="Tu Correo Electrónico" class="w-full px-5 py-3.5 rounded-xl bg-burgundy-950 border border-burgundy-800 text-stone-100 placeholder-stone-400 focus:outline-none focus:border-gold-500 text-sm">
+                    </div>
+                    <div>
+                        <textarea id="contact-message" rows="4" required placeholder="¿En qué accesorio o consulta podemos ayudarte?" class="w-full px-5 py-3.5 rounded-xl bg-burgundy-950 border border-burgundy-800 text-stone-100 placeholder-stone-400 focus:outline-none focus:border-gold-500 text-sm resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-burgundy-950 font-bold tracking-wide shadow-lg hover:brightness-110 transition-all text-sm">
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Slide-over Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-burgundy-950/60 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <!-- Header Cart -->
+                <div class="p-6 bg-burgundy-900 text-stone-100 flex items-center justify-between border-b border-burgundy-800">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping text-gold-400"></i>
+                        <h3 class="font-serif font-bold text-lg">Tu Bolsa de Compras</h3>
+                    </div>
+                    <button onclick="toggleCart()" class="text-stone-300 hover:text-gold-400 p-1">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items Container -->
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-stone-100">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Cart Footer -->
+                <div class="p-6 bg-stone-50 border-t border-stone-200 space-y-4">
+                    <div class="flex justify-between items-center text-stone-800 font-serif font-bold text-lg">
+                        <span>Total:</span>
+                        <span id="cart-total" class="gold-gradient-text">$0 COP</span>
+                    </div>
+                    <button onclick="checkout()" class="w-full py-4 rounded-xl bg-burgundy-900 hover:bg-burgundy-800 text-stone-100 font-bold tracking-wide shadow-md transition-all text-sm flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i>
+                        <span>Finalizar Pedido por WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Box (replacing alert) -->
+    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-burgundy-950/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl border border-stone-200 text-center space-y-4">
+            <div id="modal-icon" class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 id="modal-title" class="font-serif font-bold text-xl text-burgundy-900">¡Éxito!</h3>
+            <p id="modal-desc" class="text-sm text-stone-600">Acción realizada correctamente.</p>
+            <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-burgundy-900 text-stone-100 font-bold text-sm shadow-md hover:bg-burgundy-800 transition-colors">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-burgundy-950 text-stone-300 py-12 border-t border-burgundy-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-4 md:col-span-1">
+                    <span class="font-serif text-2xl font-bold gold-gradient-text tracking-widest block">AMORENA</span>
+                    <p class="text-xs text-stone-400 leading-relaxed">Joyería exclusiva en acero inoxidable y baño de rodio diseñada para resaltar tu belleza única.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-stone-100 mb-4 text-sm uppercase tracking-wider">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#inicio" class="hover:text-gold-400 transition-colors">Inicio</a></li>
+                        <li><a href="#catalogo" class="hover:text-gold-400 transition-colors">Catálogo de Joyas</a></li>
+                        <li><a href="#materiales" class="hover:text-gold-400 transition-colors">Acero & Rodio</a></li>
+                        <li><a href="#nosotros" class="hover:text-gold-400 transition-colors">Nuestra Esencia</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-stone-100 mb-4 text-sm uppercase tracking-wider">Categorías</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#catalogo" onclick="filterProducts('collares')" class="hover:text-gold-400 transition-colors">Collares Trébol y Mariposa</a></li>
+                        <li><a href="#catalogo" onclick="filterProducts('pulseras')" class="hover:text-gold-400 transition-colors">Pulseras de Cadena</a></li>
+                        <li><a href="#catalogo" onclick="filterProducts('aretes')" class="hover:text-gold-400 transition-colors">Aretes Minimalistas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-stone-100 mb-4 text-sm uppercase tracking-wider">Síguenos</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-burgundy-900 border border-burgundy-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-burgundy-950 transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-burgundy-900 border border-burgundy-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-burgundy-950 transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-burgundy-900 border border-burgundy-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-burgundy-950 transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-burgundy-900/80 pt-6 text-center text-xs text-stone-400">
+                &copy; 2026 AMORENA Joyería & Accesorios. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Array de Productos con imágenes exactas de accesorios proporcionados (collares, pulseras, aretes en acero y rodio)
+        const products = [
+            {
+                id: 1,
+                name: "Collar Doble Trébol de la Suerte (Acero)",
+                category: "collares",
+                price: 75000,
+                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600",
+                badge: "Más Vendido",
+                description: "Collar doble en acero inoxidable con dije de trébol nácar. Hipoalergénico y resistente al agua."
+            },
+            {
+                id: 2,
+                name: "Collar Colgante Mariposa de Rodio",
+                category: "collares",
+                price: 89000,
+                image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=600",
+                badge: "Nuevo",
+                description: "Delicado collar con dije de mariposa con baño de rodio y finas circonitas incrustadas."
+            },
+            {
+                id: 3,
+                name: "Pulsera Eslabones y Dijes de Acero",
+                category: "pulseras",
+                price: 65000,
+                image: "https://images.unsplash.com/photo-1611591470712-30440f1a6b0c?auto=format&fit=crop&q=80&w=600",
+                badge: "Tendencia",
+                description: "Pulsera de cadena en acero quirúrgico con delicados dijes colgantes pulidos a mano."
+            },
+            {
+                id: 4,
+                name: "Pulsera Tennis Baño de Rodio",
+                category: "pulseras",
+                price: 98000,
+                image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&q=80&w=600",
+                badge: "Exclusivo",
+                description: "Pulsera estilo tennis con baño de rodio y cristales brillantes de alta calidad."
+            },
+            {
+                id: 5,
+                name: "Aretes Minimalistas Geométricos (Rodio)",
+                category: "aretes",
+                price: 52000,
+                image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&q=80&w=600",
+                badge: "Elegante",
+                description: "Argollas minimalistas con acabado en baño de rodio, ligeras y sofisticadas para el día a día."
+            },
+            {
+                id: 6,
+                name: "Set de Aretes Botón Trébol",
+                category: "aretes",
+                price: 49000,
+                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600",
+                badge: "Especial",
+                description: "Aretes tipo botón en forma de trébol en acero inoxidable dorado. Brillo permanente."
+            }
+        ];
+
+        let cart = [];
+
+        // Formatear precio a formato COP colombiano
+        function formatCOP(amount) {
+            return '$' + amount.toLocaleString('es-CO') + ' COP';
+        }
+
+        // Renderizar productos en el catálogo
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-3xl overflow-hidden border border-stone-200/80 shadow-md hover:shadow-xl transition-all flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div class="relative aspect-square overflow-hidden bg-stone-100">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-burgundy-900/90 text-gold-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
+                            ${product.badge}
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1 justify-between space-y-4">
+                        <div>
+                            <h3 class="font-serif font-bold text-burgundy-900 text-lg group-hover:text-gold-600 transition-colors">${product.name}</h3>
+                            <p class="text-stone-600 text-xs mt-1.5 line-clamp-2">${product.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                            <span class="font-serif font-bold text-lg text-burgundy-900">${formatCOP(product.price)}</span>
+                            <button onclick="addToCart(${product.id})" class="px-4 py-2.5 rounded-xl bg-burgundy-900 text-stone-100 hover:bg-gold-500 hover:text-burgundy-950 font-semibold text-xs transition-all shadow-sm flex items-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Agregar</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtrar productos
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if(btn.dataset.category === category) {
+                    btn.className = "filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-burgundy-900 text-stone-100 shadow-md";
+                } else {
+                    btn.className = "filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-burgundy-900 border border-stone-200 hover:border-gold-500";
+                }
+            });
+            renderProducts(category);
+        }
+
+        // Carrito de compras: Añadir producto
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showModal("¡Agregado al Carrito!", `${product.name} se añadió exitosamente a tu bolsa de compras.`, "success");
+        }
+
+        // Actualizar interfaz del carrito
+        function updateCartUI() {
+            const counter = document.getElementById('cart-counter');
+            const itemsContainer = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            counter.textContent = totalItems;
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i class="fa-solid fa-bag-shopping text-4xl text-stone-300"></i>
+                        <p class="text-sm text-stone-500">Tu bolsa de compras está vacía.</p>
+                    </div>
+                `;
+                totalEl.textContent = formatCOP(0);
+                return;
+            }
+
+            itemsContainer.innerHTML = '';
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                totalPrice += item.price * item.quantity;
+                const itemEl = document.createElement('div');
+                itemEl.className = 'py-4 flex items-center justify-between space-x-4';
+                itemEl.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl border border-stone-200">
+                        <div>
+                            <h4 class="font-serif font-bold text-burgundy-900 text-sm">${item.name}</h4>
+                            <p class="text-xs text-stone-500">${formatCOP(item.price)} x ${item.quantity}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="changeQuantity(${item.id}, -1)" class="w-7 h-7 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center text-xs font-bold">-</button>
+                        <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+                        <button onclick="changeQuantity(${item.id}, 1)" class="w-7 h-7 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center text-xs font-bold">+</button>
+                    </div>
+                `;
+                itemsContainer.appendChild(itemEl);
+            });
+
+            totalEl.textContent = formatCOP(totalPrice);
+        }
+
+        // Cambiar cantidad de producto en carrito
+        function changeQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== productId);
+                }
+                updateCartUI();
+            }
+        }
+
+        // Abrir / Cerrar Carrito
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Menú móvil toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        // Finalizar pedido por WhatsApp
+        function checkout() {
+            if (cart.length === 0) {
+                showModal("Bolsa Vacía", "Por favor agrega al menos una joya a tu carrito antes de realizar el pedido.", "warning");
+                return;
+            }
+
+            let message = "¡Hola AMORENA! 💍 Me gustaría realizar el siguiente pedido:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                message += `- ${item.quantity}x ${item.name} (${formatCOP(item.price * item.quantity)})\n`;
+                total += item.price * item.quantity;
+            });
+
+            message += `\n*Total a Pagar:* ${formatCOP(total)}\n\n¡Quedo atento(a) para coordinar el pago y envío!`;
+
+            const whatsappUrl = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Manejar formulario de contacto
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            showModal("¡Mensaje Enviado!", `Gracias ${name}, hemos recibido tu mensaje. Nos pondremos en contacto contigo a la brevedad.`, "success");
+            event.target.reset();
+        }
+
+        // Modal personalizado (reemplazo de alert)
+        function showModal(title, desc, type = "success") {
+            const modal = document.getElementById('custom-modal');
+            const titleEl = document.getElementById('modal-title');
+            const descEl = document.getElementById('modal-desc');
+            const iconEl = document.getElementById('modal-icon');
+
+            titleEl.textContent = title;
+            descEl.textContent = desc;
+
+            if(type === "success") {
+                iconEl.className = "w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto";
+                iconEl.innerHTML = '<i class="fa-solid fa-check"></i>';
+            } else {
+                iconEl.className = "w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xl mx-auto";
+                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            modal.classList.add('hidden');
+        }
+
+        // Inicializar renderizado al cargar la ventana
+        window.onload = function() {
+            renderProducts('all');
+        }
+    </script>
+</body>
+</html>
